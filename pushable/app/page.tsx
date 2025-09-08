@@ -161,15 +161,15 @@ export default function Home() {
         {[
           {
             title: "About me",
-            body: "Frontend-focused full-stack dev, TypeScript enjoyer, and UI aesthete. Currently exploring edge runtimes and tRPC.",
+            body: "just a nerdy and eepy femmy",
           },
           {
             title: "What I do",
-            body: "Web apps, Discord bots, and workflow tools. I like clean APIs, micro-interactions, and strong DX.",
+            body: "i goon ",
           },
           {
-            title: "Tech",
-            body: "C++, Python, Node.js, Next.js, Tailwind, Framer Motion, Vercel.",
+            title: "The shit i fw with",
+            body: "C++ , PYTHON + NEXT.JS AND NODE.JS",
           },
         ].map((c) => (
           <div
