@@ -1,0 +1,133 @@
+
+"use client";
+
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { useMemo } from "react";
+import { Github, Mail, Discord } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import DiscordPresence from "@/components/discord-presence";
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+export default function Home() {
+  const invite = process.env.NEXT_PUBLIC_DISCORD_INVITE || `https://discord.com/users/${process.env.NEXT_PUBLIC_DISCORD_USER_ID}`;
+  const discordUserId = process.env.NEXT_PUBLIC_DISCORD_USER_ID || "1225115460509503490";
+  const github = process.env.NEXT_PUBLIC_GITHUB || "https://github.com/erenefdc";
+  const email = process.env.NEXT_PUBLIC_EMAIL || "you@example.com";
+  const intro = process.env.NEXT_PUBLIC_INTRO || "Hii i am paxx a certified femmy and nerd i lowkey fw w c++ , python , little bit node.js etc :3";
+
+  const actions = useMemo(() => ([
+    { href: invite, label: "My Discord", icon: Discord },
+    { href: `mailto:${email}`, label: "Email me", icon: Mail },
+    { href: github, label: "GitHub", icon: Github },
+  ]), [invite, email, github]);
+
+  const buttonsDelay = 0.2; // delay before buttons start showing
+  const buttonsStagger = 0.15;
+  const cardDelay = buttonsDelay + (actions.length * buttonsStagger) + 0.12;
+
+  return (
+    <main className="min-h-screen gradient relative">
+      <div className="absolute inset-0 bg-grid bg-[size:40px_40px] opacity-[.08] pointer-events-none" />
+      <header className="max-w-5xl mx-auto px-6 pt-6 flex items-center justify-between">
+        <div className="font-semibold tracking-tight text-lg">paxx<span className="opacity-50">.dev</span></div>
+        <ThemeToggle />
+      </header>
+
+      <section className="max-w-5xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="space-y-6"
+        >
+          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+            Hey, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-emerald-500">paxx</span> 👋
+          </h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-lg md:text-xl text-gray-600 dark:text-gray-300"
+          >
+            {intro}
+          </motion.p>
+
+          <motion.div
+            variants={container}
+            initial="hidden"
+            animate="show"
+            className="flex gap-3 flex-wrap"
+            style={{ marginTop: 6 }}
+          >
+            {actions.map((a) => (
+              <motion.a
+                key={a.label}
+                href={a.href}
+                target="_blank"
+                rel="noreferrer"
+                className="card px-5 py-3 flex items-center gap-2 font-medium hover:shadow transition"
+                variants={item}
+              >
+                <a.icon className="w-5 h-5" />
+                {a.label}
+              </motion.a>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: cardDelay }}
+          className="card p-6"
+        >
+          <div className="flex items-center gap-5">
+            <Image src="/avatar.svg" alt="Avatar" width={96} height={96} className="rounded-2xl" />
+            <div>
+              <div className="text-xl font-semibold">paxx</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">@paxx</div>
+            </div>
+          </div>
+          <div className="mt-6">
+            <DiscordPresence userId={discordUserId} />
+          </div>
+        </motion.div>
+      </section>
+
+      <section className="max-w-5xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-6">
+        {[
+          { title: "About me", body: "Frontend-focused full-stack dev, TypeScript enjoyer, and UI aesthete. Currently exploring edge runtimes and tRPC." },
+          { title: "What I do", body: "Web apps, Discord bots, and workflow tools. I like clean APIs, micro-interactions, and strong DX." },
+          { title: "Tech", body: "C++, Python, Node.js, Next.js, Tailwind, Framer Motion, Vercel." },
+        ].map((c) => (
+          <div key={c.title} className="card p-6">
+            <div className="font-semibold">{c.title}</div>
+            <p className="text-gray-600 dark:text-gray-300 mt-2">{c.body}</p>
+          </div>
+        ))}
+      </section>
+
+      <footer className="border-t border-black/5 dark:border-white/10">
+        <div className="max-w-5xl mx-auto px-6 py-10 text-sm text-gray-500 dark:text-gray-400 flex items-center justify-between">
+          <span>© {new Date().getFullYear()} paxx</span>
+          <a href="https://vercel.com/new" className="hover:underline" target="_blank" rel="noreferrer">Deploy on Vercel</a>
+        </div>
+      </footer>
+    </main>
+  );
+}
