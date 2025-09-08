@@ -110,9 +110,9 @@ export default function Home() {
 
       <section className="max-w-5xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-6">
         {[
-          { title: "About me", body: "Frontend-focused full-stack dev, TypeScript enjoyer, and UI aesthete. Currently exploring edge runtimes and tRPC." },
-          { title: "What I do", body: "Web apps, Discord bots, and workflow tools. I like clean APIs, micro-interactions, and strong DX." },
-          { title: "Tech", body: "C++, Python, Node.js, Next.js, Tailwind, Framer Motion, Vercel." },
+          { title: "About me", body: "uhh i am paxx i am a femmy?? yeahh i like code" },
+          { title: "What I do", body: "Uhhh i goon? Idfk i be silly femmy" },
+          { title: "The Shit I fw With", body: "c++, Python, node.js , next.js " },
         ].map((c) => (
           <div key={c.title} className="card p-6 hover:scale-105 transition transform hover:shadow-xl">
             <div className="font-semibold">{c.title}</div>
