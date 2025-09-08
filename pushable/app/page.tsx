@@ -1,10 +1,9 @@
-
 "use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMemo } from "react";
-import { Github, Mail, Discord } from "lucide-react";
+import { Github, Mail, MessageCircle } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import DiscordPresence from "@/components/discord-presence";
 
@@ -31,7 +30,7 @@ export default function Home() {
   const intro = process.env.NEXT_PUBLIC_INTRO || "Hii i am paxx a certified femmy and nerd i lowkey fw w c++ , python , little bit node.js etc :3";
 
   const actions = useMemo(() => ([
-    { href: invite, label: "My Discord", icon: Discord },
+    { href: invite, label: "My Discord", icon: MessageCircle },
     { href: `mailto:${email}`, label: "Email me", icon: Mail },
     { href: github, label: "GitHub", icon: Github },
   ]), [invite, email, github]);
@@ -110,7 +109,7 @@ export default function Home() {
       </section>
 
       <section className="max-w-5xl mx-auto px-6 pb-24 grid md:grid-cols-3 gap-6">
-        {[
+        {[ 
           { title: "About me", body: "Frontend-focused full-stack dev, TypeScript enjoyer, and UI aesthete. Currently exploring edge runtimes and tRPC." },
           { title: "What I do", body: "Web apps, Discord bots, and workflow tools. I like clean APIs, micro-interactions, and strong DX." },
           { title: "Tech", body: "C++, Python, Node.js, Next.js, Tailwind, Framer Motion, Vercel." },
