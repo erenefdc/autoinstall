@@ -15,7 +15,8 @@
     "lucide-react": "^0.446.0",
     "swr": "^2.2.5",
     "next-themes": "^0.2.1",
-    "framer-motion": "^11.0.0"
+    "framer-motion": "^11.0.0",
+    "@giscus/react": "^1.3.0"
   },
   "devDependencies": {
     "autoprefixer": "10.4.20",
